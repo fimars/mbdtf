@@ -31,7 +31,9 @@ function DropZone() {
 
 	return (
 		<Card isFooterBlurred radius="lg">
-			<canvas id="mbdtf" className="size-80 block" />
+			<div className="size-96 flex items-center justify-center">
+				<canvas id="mbdtf" className="size-80" />
+			</div>
 
 			<CardFooter className="gap-4">
 				<Input
@@ -41,7 +43,7 @@ function DropZone() {
 							analyzeImageBlocks(f);
 						}
 					}}
-					className="w-36"
+					className="w-36 hidden"
 					ref={fi}
 					type="file"
 				/>
@@ -53,6 +55,29 @@ function DropZone() {
 					endContent={<UploadIcon />}
 				>
 					Take a photo
+				</Button>
+				<Button
+					onClick={() => {
+						const canvasImage = (
+							document.getElementById("mbdtf") as HTMLCanvasElement
+						).toDataURL("image/png");
+
+						const xhr = new XMLHttpRequest();
+						xhr.responseType = "blob";
+						xhr.onload = () => {
+							const a = document.createElement("a");
+							a.href = window.URL.createObjectURL(xhr.response);
+							a.download = "mbdtf.png";
+							a.style.display = "none";
+							document.body.appendChild(a);
+							a.click();
+							a.remove();
+						};
+						xhr.open("GET", canvasImage);
+						xhr.send();
+					}}
+				>
+					Download
 				</Button>
 			</CardFooter>
 		</Card>
