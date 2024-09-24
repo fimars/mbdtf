@@ -204,6 +204,34 @@ function analyzeImageBlocks(file: File) {
 				outputCanvas.height,
 			);
 
+			// 绘制最里面 10 像素
+			const border = 10;
+			outputCtx.fillStyle = "rgb(255, 195, 0)";
+			outputCtx.fillRect(
+				fillSize - border,
+				fillSize - border,
+				outputCanvas.width - (fillSize - border) * 2,
+				border,
+			);
+			outputCtx.fillRect(
+				fillSize - border,
+				fillSize - border,
+				border,
+				outputCanvas.height - (fillSize - border) * 2,
+			);
+			outputCtx.fillRect(
+				fillSize - border,
+				outputCanvas.height - fillSize,
+				outputCanvas.width - (fillSize - border) * 2,
+				border,
+			);
+			outputCtx.fillRect(
+				outputCanvas.width - fillSize,
+				fillSize - border,
+				border,
+				outputCanvas.height - (fillSize - border) * 2,
+			);
+
 			for (let i = 0; i < blockData.length; i++) {
 				const block = blockData[i];
 				const x =
