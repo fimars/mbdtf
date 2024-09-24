@@ -1,5 +1,26 @@
+import { Card, Skeleton } from "@nextui-org/react";
 import type { MetaFunction } from "@remix-run/node";
 
+function SkeletonNow() {
+	return (
+		<Card className="w-[200px] space-y-5 p-4" radius="lg">
+			<Skeleton className="rounded-lg">
+				<div className="h-24 rounded-lg bg-default-300" />
+			</Skeleton>
+			<div className="space-y-3">
+				<Skeleton className="w-3/5 rounded-lg">
+					<div className="h-3 w-3/5 rounded-lg bg-default-200" />
+				</Skeleton>
+				<Skeleton className="w-4/5 rounded-lg">
+					<div className="h-3 w-4/5 rounded-lg bg-default-200" />
+				</Skeleton>
+				<Skeleton className="w-2/5 rounded-lg">
+					<div className="h-3 w-2/5 rounded-lg bg-default-300" />
+				</Skeleton>
+			</div>
+		</Card>
+	);
+}
 export const meta: MetaFunction = () => {
 	return [
 		{ title: "New Remix App" },
@@ -28,26 +49,7 @@ export default function Index() {
 						/>
 					</div>
 				</header>
-				<nav className="flex flex-col items-center justify-center gap-4 rounded-3xl border border-gray-200 p-6 dark:border-gray-700">
-					<p className="leading-6 text-gray-700 dark:text-gray-200">
-						What&apos;s next?
-					</p>
-					<ul>
-						{resources.map(({ href, text, icon }) => (
-							<li key={href}>
-								<a
-									className="group flex items-center gap-3 self-stretch p-3 leading-normal text-blue-700 hover:underline dark:text-blue-500"
-									href={href}
-									target="_blank"
-									rel="noreferrer"
-								>
-									{icon}
-									{text}
-								</a>
-							</li>
-						))}
-					</ul>
-				</nav>
+				<SkeletonNow />
 			</div>
 		</div>
 	);
