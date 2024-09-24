@@ -6,6 +6,7 @@ import {
 	Scripts,
 	ScrollRestoration,
 } from "@remix-run/react";
+import { Card, Skeleton } from "@nextui-org/react";
 
 import type { LinksFunction } from "@remix-run/node";
 
